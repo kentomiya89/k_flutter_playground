@@ -3,6 +3,8 @@ import 'package:k_flutter_playground/samples/text_field_sample/with_clear_button
 import 'package:k_flutter_playground/widget/playground_list.dart';
 
 import 'dropdown_button_sample/dropdown_button_screen.dart';
+import 'navigation_pattern/bottom_navigation_remain.dart';
+import 'navigation_pattern/navigation_pattern_screen.dart';
 
 class PlaygroundListScreen extends StatelessWidget {
   @override
@@ -22,6 +24,14 @@ class PlaygroundListScreen extends StatelessWidget {
             PlaygroundListTile(
               title: 'テキストフィールドクリアボタン',
               page: TextFieldWithClearButtonForRp(),
+            ),
+            PlaygroundListTile(
+              title: '画面遷移パターン',
+              page: NavigationPatternScreen(),
+            ),
+            PlaygroundListTile(
+              title: 'ネスト画面遷移',
+              page: BottomNavigationRemain(),
             ),
           ],
         ),
