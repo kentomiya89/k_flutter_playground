@@ -1,6 +1,5 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_flutter_playground/graphql/kanto_pokemon.data.gql.dart';
@@ -23,19 +22,19 @@ final pokemonFetchProvider = StreamProvider.autoDispose(
       ),
 );
 
-class PokemonScreen extends HookWidget {
+class PokemonScreen extends HookConsumerWidget {
   const PokemonScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final result = useProvider(pokemonFetchProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final result = ref.watch(pokemonFetchProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('関東のポケモン'),
         actions: [
           IconButton(
-            onPressed: () => context.refresh(pokemonFetchProvider),
+            onPressed: () => ref.refresh(pokemonFetchProvider),
             icon: Icon(Icons.refresh),
           ),
         ],
@@ -45,16 +44,18 @@ class PokemonScreen extends HookWidget {
           child: CircularProgressIndicator(),
         ),
         orElse: () {
-          final pokemonData = result.data?.value.data;
+          final pokemonData = result.asData?.value.data;
 
-          logger..info('データソースタイプ')..info(result.data?.value.dataSource);
+          logger
+            ..info('データソースタイプ')
+            ..info(result.asData?.value.dataSource);
 
           // エラー時はデータがない
           if (pokemonData == null) {
             return Center(
               child: TextButton(
                 onPressed: () {
-                  context.refresh(pokemonFetchProvider);
+                  ref.refresh(pokemonFetchProvider);
                 },
                 child: Text('再取得する', style: TextStyle(fontSize: 20)),
               ),

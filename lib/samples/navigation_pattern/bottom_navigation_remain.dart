@@ -45,12 +45,13 @@ final navigatorKeys = [
   GlobalKey<NavigatorState>()
 ];
 
-class BottomNavigationRemain extends HookWidget {
+class BottomNavigationRemain extends HookConsumerWidget {
   const BottomNavigationRemain({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final currentIndex = useProvider(bottomNavBarIndexProvider).state;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentIndex = ref.watch(bottomNavBarIndexProvider);
+    final bottomController = ref.watch(bottomNavBarIndexProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -68,7 +69,7 @@ class BottomNavigationRemain extends HookWidget {
         ],
         type: BottomNavigationBarType.fixed,
         onTap: (index) {
-          context.read(bottomNavBarIndexProvider).state = index;
+          bottomController.state = index;
         },
       ),
     );

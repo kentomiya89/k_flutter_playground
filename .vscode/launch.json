@@ -14,7 +14,8 @@
             "name": "k_flutter_playground (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "program": "lib/main_riverpod.dart"
         }
     ]
 }

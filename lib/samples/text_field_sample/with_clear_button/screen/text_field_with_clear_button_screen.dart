@@ -4,11 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_flutter_playground/samples/text_field_sample/with_clear_button/provider/text_field_provider.dart';
 
 // Riverpod用
-class TextFieldWithClearButtonForRp extends HookWidget {
+class TextFieldWithClearButtonForRp extends HookConsumerWidget {
   const TextFieldWithClearButtonForRp();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController();
 
     return Scaffold(
@@ -22,7 +22,7 @@ class TextFieldWithClearButtonForRp extends HookWidget {
             controller: controller,
             decoration: InputDecoration(
               labelText: 'テキストを入力',
-              suffixIcon: useProvider(
+              suffixIcon: ref.watch(
                       textFieldProvider.select((value) => value.isHiddenIcon))
                   ? null
                   : IconButton(
@@ -30,13 +30,13 @@ class TextFieldWithClearButtonForRp extends HookWidget {
                       color: Colors.grey,
                       onPressed: () {
                         controller.clear();
-                        context.read(textFieldProvider).text =
+                        ref.read(textFieldProvider).text =
                             controller.value.text;
                       },
                     ),
             ),
             onChanged: (text) {
-              context.read(textFieldProvider).text = text;
+              ref.read(textFieldProvider).text = text;
             },
           ),
         ),
