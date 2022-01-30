@@ -5,8 +5,6 @@ import 'app.dart';
 
 void main() {
   runApp(
-    ProviderScope(
-      child: PlaygroundApp(),
-    ),
+    const ProviderScope(child: PlaygroundApp()),
   );
 }

@@ -8,6 +8,8 @@ import 'navigation_pattern/bottom_navigation_remain.dart';
 import 'navigation_pattern/navigation_pattern_screen.dart';
 
 class PlaygroundListScreen extends StatelessWidget {
+  const PlaygroundListScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,7 @@ class PlaygroundListScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          children: [
+          children: const [
             PlaygroundListTile(
               title: 'ドロップダウンボタン',
               page: DropdownButtonSample(),

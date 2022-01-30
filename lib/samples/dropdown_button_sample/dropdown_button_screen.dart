@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class DropdownButtonSample extends StatelessWidget {
-  const DropdownButtonSample();
+  const DropdownButtonSample({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ドロップダウン'),
+        title: const Text('ドロップダウン'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Center(
           child: DropdownButton(
             items: List.generate(100, (index) => 'hogehogehoge')

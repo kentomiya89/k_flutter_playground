@@ -3,6 +3,8 @@ import 'package:k_flutter_playground/samples/navigation_pattern/navigation_patte
 import 'package:k_flutter_playground/samples/playground_list_screen.dart';
 
 class PlaygroundApp extends StatelessWidget {
+  const PlaygroundApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,8 +14,8 @@ class PlaygroundApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => PlaygroundListScreen(),
-        '/namedRoute': (context) => NamedRouteScreen(),
+        '/': (context) => const PlaygroundListScreen(),
+        '/namedRoute': (context) => const NamedRouteScreen(),
       },
     );
   }

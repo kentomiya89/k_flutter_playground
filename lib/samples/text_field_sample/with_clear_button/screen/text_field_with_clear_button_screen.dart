@@ -5,7 +5,7 @@ import 'package:k_flutter_playground/samples/text_field_sample/with_clear_button
 
 // Riverpod用
 class TextFieldWithClearButtonForRp extends HookConsumerWidget {
-  const TextFieldWithClearButtonForRp();
+  const TextFieldWithClearButtonForRp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -13,7 +13,7 @@ class TextFieldWithClearButtonForRp extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('TextField ClearButton'),
+        title: const Text('TextField ClearButton'),
       ),
       body: Center(
         child: Padding(
@@ -26,7 +26,7 @@ class TextFieldWithClearButtonForRp extends HookConsumerWidget {
                       textFieldProvider.select((value) => value.isHiddenIcon))
                   ? null
                   : IconButton(
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                       color: Colors.grey,
                       onPressed: () {
                         controller.clear();

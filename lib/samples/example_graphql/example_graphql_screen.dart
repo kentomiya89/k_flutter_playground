@@ -31,16 +31,16 @@ class PokemonScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('関東のポケモン'),
+        title: const Text('関東のポケモン'),
         actions: [
           IconButton(
             onPressed: () => ref.refresh(pokemonFetchProvider),
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
           ),
         ],
       ),
       body: result.maybeWhen(
-        loading: () => Center(
+        loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
         orElse: () {
@@ -57,7 +57,7 @@ class PokemonScreen extends HookConsumerWidget {
                 onPressed: () {
                   ref.refresh(pokemonFetchProvider);
                 },
-                child: Text('再取得する', style: TextStyle(fontSize: 20)),
+                child: const Text('再取得する', style: TextStyle(fontSize: 20)),
               ),
             );
           }

@@ -4,7 +4,7 @@ import 'package:k_flutter_playground/util/logger.dart';
 class ProviderLogger extends ProviderObserver {
   @override
   void didAddProvider(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     Object? value,
     ProviderContainer container,
   ) {
@@ -15,7 +15,7 @@ class ProviderLogger extends ProviderObserver {
 
   @override
   void providerDidFail(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     Object error,
     StackTrace stackTrace,
     ProviderContainer container,
@@ -27,7 +27,7 @@ class ProviderLogger extends ProviderObserver {
 
   @override
   void didUpdateProvider(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     Object? previousValue,
     Object? newValue,
     ProviderContainer container,
@@ -39,7 +39,7 @@ class ProviderLogger extends ProviderObserver {
 
   @override
   void didDisposeProvider(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     ProviderContainer containers,
   ) {
     logger

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-final buttonText = '画面遷移';
-
 class NavigationPatternScreen extends StatelessWidget {
+  const NavigationPatternScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,27 +20,28 @@ class NavigationPatternScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, '/namedRoute');
                 },
-                child: Text('NamedRouteのやり方'),
+                child: const Text('NamedRouteのやり方'),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.of(context)
+                      .push<MaterialPageRoute<MaterialPageRouteScreen>>(
                     MaterialPageRoute(
-                      builder: (context) {
-                        return MaterialPageRouteScreen();
-                      },
+                      builder: (context) => const MaterialPageRouteScreen(),
                     ),
                   );
                 },
-                child: Text('MaterialPageRouteのやり方'),
+                child: const Text('MaterialPageRouteのやり方'),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(StaticRouteDefineScreen.route());
+                  Navigator.of(context).push(
+                    StaticRouteDefineScreen.route(),
+                  );
                 },
-                child: Text('MaterialPageRouteのやり方'),
+                child: const Text('MaterialPageRouteのやり方'),
               )
             ],
           ),
@@ -51,13 +52,15 @@ class NavigationPatternScreen extends StatelessWidget {
 }
 
 class NamedRouteScreen extends StatelessWidget {
+  const NamedRouteScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('遷移先'),
+        title: const Text('遷移先'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('NamedRouteでの遷移先'),
       ),
     );
@@ -65,13 +68,15 @@ class NamedRouteScreen extends StatelessWidget {
 }
 
 class MaterialPageRouteScreen extends StatelessWidget {
+  const MaterialPageRouteScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('遷移先'),
+        title: const Text('遷移先'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('MaterialPageRouteでの遷移先'),
       ),
     );
@@ -79,16 +84,18 @@ class MaterialPageRouteScreen extends StatelessWidget {
 }
 
 class StaticRouteDefineScreen extends StatelessWidget {
-  static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => StaticRouteDefineScreen());
+  const StaticRouteDefineScreen({Key? key}) : super(key: key);
+
+  static Route<MaterialPageRoute<void>> route() =>
+      MaterialPageRoute(builder: (_) => const StaticRouteDefineScreen());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('遷移先'),
+        title: const Text('遷移先'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('StaticRouteScreenでの遷移先'),
       ),
     );

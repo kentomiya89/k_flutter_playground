@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class PlaygroundListTile extends StatelessWidget {
   const PlaygroundListTile({
+    Key? key,
     required this.title,
     required this.page,
     this.isModalScreen = false,
-  });
+  }) : super(key: key);
 
   final String title;
   final Widget page;

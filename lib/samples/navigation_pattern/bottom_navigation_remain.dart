@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final bottomNavBarIndexProvider = StateProvider.autoDispose<int>((_) => 0);
@@ -55,14 +54,14 @@ class BottomNavigationRemain extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('サンプル'),
+        title: const Text('サンプル'),
       ),
       body: TabNavigator(
         navigationKey: navigatorKeys[currentIndex],
         route: buildRoute(currentIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'テスト1'),
           BottomNavigationBarItem(icon: Icon(Icons.sanitizer), label: 'テスト2'),
           BottomNavigationBarItem(icon: Icon(Icons.tab), label: 'テスト3'),
@@ -75,7 +74,7 @@ class BottomNavigationRemain extends HookConsumerWidget {
     );
   }
 
-  Route buildRoute(int index) {
+  Route<MaterialPageRoute<void>> buildRoute(int index) {
     switch (index) {
       case 0:
         return Test1.route();
@@ -90,10 +89,14 @@ class BottomNavigationRemain extends HookConsumerWidget {
 }
 
 class TabNavigator extends StatelessWidget {
-  const TabNavigator({required this.navigationKey, required this.route});
+  const TabNavigator({
+    Key? key,
+    required this.navigationKey,
+    required this.route,
+  }) : super(key: key);
 
   final GlobalKey<NavigatorState> navigationKey;
-  final Route route;
+  final Route<MaterialPageRoute<void>> route;
 
   @override
   Widget build(BuildContext context) {
@@ -107,9 +110,10 @@ class TabNavigator extends StatelessWidget {
 }
 
 class Test1 extends StatelessWidget {
-  const Test1();
+  const Test1({Key? key}) : super(key: key);
 
-  static Route<dynamic> route() => MaterialPageRoute(builder: (_) => Test1());
+  static Route<MaterialPageRoute<void>> route() =>
+      MaterialPageRoute(builder: (_) => const Test1());
 
   @override
   Widget build(BuildContext context) {
@@ -119,29 +123,29 @@ class Test1 extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(Test4.route());
         },
-        child: Text('Test4へ遷移'),
+        child: const Text('Test4へ遷移'),
       ),
     );
   }
 }
 
 class Test2 extends StatelessWidget {
-  const Test2();
+  const Test2({Key? key}) : super(key: key);
 
-  static Route<dynamic> route() => MaterialPageRoute(builder: (_) => Test2());
+  static Route<MaterialPageRoute<void>> route() =>
+      MaterialPageRoute(builder: (_) => const Test2());
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-    );
+    return Container(color: Colors.red);
   }
 }
 
 class Test3 extends StatelessWidget {
-  const Test3();
+  const Test3({Key? key}) : super(key: key);
 
-  static Route<dynamic> route() => MaterialPageRoute(builder: (_) => Test3());
+  static Route<MaterialPageRoute<void>> route() =>
+      MaterialPageRoute(builder: (_) => const Test3());
 
   @override
   Widget build(BuildContext context) {
@@ -152,9 +156,10 @@ class Test3 extends StatelessWidget {
 }
 
 class Test4 extends StatelessWidget {
-  const Test4();
+  const Test4({Key? key}) : super(key: key);
 
-  static Route<dynamic> route() => MaterialPageRoute(builder: (_) => Test4());
+  static Route<MaterialPageRoute<void>> route() =>
+      MaterialPageRoute(builder: (_) => const Test4());
 
   @override
   Widget build(BuildContext context) {
