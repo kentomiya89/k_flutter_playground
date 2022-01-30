@@ -1,0 +1,66 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'device_info_provider.dart';
+import 'package_info_provider.dart';
+
+final deviceAndPackgeInfoListProvider =
+    Provider.autoDispose<List<MapEntry<String, String>>>((ref) {
+  final device = ref.watch(deviceInfoProvider);
+  final package = ref.watch(packageInfoProvider);
+
+  final packageInfoList = [
+    MapEntry('アプリ名', package.appName),
+    MapEntry('プロジェクト名(パッケージ名)', package.packageName),
+    MapEntry('アプリバージョン', package.version),
+    MapEntry('ビルドバージョン', package.buildNumber),
+  ];
+
+  if (Platform.isAndroid) {
+    final androidInfo = device as AndroidDeviceInfo;
+    return [
+      ...packageInfoList,
+      MapEntry('OSバージョン', androidInfo.version.release!),
+      MapEntry('SDKバージョン', androidInfo.version.sdkInt!.toString()),
+      MapEntry('機種名', androidInfo.device!),
+      MapEntry('ブランド', androidInfo.brand!),
+    ];
+  } else if (Platform.isIOS) {
+    final iosInfo = device as IosDeviceInfo;
+    return [
+      ...packageInfoList,
+      MapEntry('OSバージョン', iosInfo.systemVersion!),
+      MapEntry('機種名', iosInfo.utsname.machine!),
+    ];
+  } else {
+    return [
+      ...packageInfoList,
+    ];
+  }
+});
+
+class DeviceAndPackageInfoSampleScreen extends HookConsumerWidget {
+  const DeviceAndPackageInfoSampleScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final deviceInfoList = ref.watch(deviceAndPackgeInfoListProvider);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('端末とアプリ情報'),
+      ),
+      body: ListView.builder(
+        itemCount: deviceInfoList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(deviceInfoList[index].key),
+            subtitle: Text(deviceInfoList[index].value),
+          );
+        },
+      ),
+    );
+  }
+}
