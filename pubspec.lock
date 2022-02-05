@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.2"
+  apple_product_name:
+    dependency: "direct main"
+    description:
+      name: apple_product_name
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   args:
     dependency: transitive
     description:

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:apple_product_name/apple_product_name.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -34,7 +35,7 @@ final deviceAndPackgeInfoListProvider =
     return [
       ...packageInfoList,
       MapEntry('OSバージョン', iosInfo.systemVersion!),
-      MapEntry('機種名', iosInfo.utsname.machine!),
+      MapEntry('機種名', AppleProductName().lookup(iosInfo.utsname.machine!)),
     ];
   } else {
     return [
