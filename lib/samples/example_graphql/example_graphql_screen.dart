@@ -2,9 +2,9 @@ import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_flutter_playground/graphql/kanto_pokemon.data.gql.dart';
-import 'package:k_flutter_playground/graphql/kanto_pokemon.req.gql.dart';
-import 'package:k_flutter_playground/util/logger.dart';
+import '../../graphql/kanto_pokemon.data.gql.dart';
+import '../../graphql/kanto_pokemon.req.gql.dart';
+import '../../util/util.dart';
 
 final clientProvider = Provider(
   (_) => Client(

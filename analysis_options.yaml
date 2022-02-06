@@ -5,3 +5,6 @@ analyzer:
     - lib/**.g.dart
     - lib/**.freezed.dart
     - lib/**.gql.dart
+linter:
+  rules: 
+   - prefer_relative_imports

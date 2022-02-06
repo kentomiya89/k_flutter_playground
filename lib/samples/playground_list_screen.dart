@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:k_flutter_playground/samples/device_and_packge_info/device_and_package_info_screen.dart';
-import 'package:k_flutter_playground/samples/example_graphql/example_graphql_screen.dart';
-import 'package:k_flutter_playground/samples/text_field_sample/with_clear_button/screen/text_field_with_clear_button_screen.dart';
-import 'package:k_flutter_playground/widget/playground_list.dart';
 
+import '../widget/playground_list.dart';
+import 'device_and_packge_info/device_and_package_info_screen.dart';
 import 'dropdown_button_sample/dropdown_button_screen.dart';
+import 'example_graphql/example_graphql_screen.dart';
 import 'navigation_pattern/bottom_navigation_remain.dart';
 import 'navigation_pattern/navigation_pattern_screen.dart';
+import 'text_field_sample/with_clear_button/screen/text_field_with_clear_button_screen.dart';
 
 class PlaygroundListScreen extends StatelessWidget {
   const PlaygroundListScreen({Key? key}) : super(key: key);

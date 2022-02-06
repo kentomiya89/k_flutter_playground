@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_flutter_playground/util/logger.dart';
+
+import 'util.dart';
 
 class ProviderLogger extends ProviderObserver {
   @override
