@@ -9,7 +9,8 @@ class TextFieldWithClearButtonForRp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = useTextEditingController();
+    final controller = useTextEditingController(text: '');
+    final textController = ref.watch(textProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -22,22 +23,18 @@ class TextFieldWithClearButtonForRp extends HookConsumerWidget {
             controller: controller,
             decoration: InputDecoration(
               labelText: 'テキストを入力',
-              suffixIcon: ref.watch(
-                      textFieldProvider.select((value) => value.isHiddenIcon))
+              suffixIcon: ref.watch(isShowClearButtonProvider)
                   ? null
                   : IconButton(
                       icon: const Icon(Icons.clear),
                       color: Colors.grey,
                       onPressed: () {
                         controller.clear();
-                        ref.read(textFieldProvider).text =
-                            controller.value.text;
+                        textController.update((state) => '');
                       },
                     ),
             ),
-            onChanged: (text) {
-              ref.read(textFieldProvider).text = text;
-            },
+            onChanged: (text) => textController.update((state) => text),
           ),
         ),
       ),

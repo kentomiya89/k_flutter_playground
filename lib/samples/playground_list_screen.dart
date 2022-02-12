@@ -6,7 +6,7 @@ import 'dropdown_button_sample/dropdown_button_screen.dart';
 import 'example_graphql/example_graphql_screen.dart';
 import 'navigation_pattern/bottom_navigation_remain.dart';
 import 'navigation_pattern/navigation_pattern_screen.dart';
-import 'text_field_sample/with_clear_button/screen/text_field_with_clear_button_screen.dart';
+import 'text_field_with_clear_button_sample/screen/text_field_with_clear_button_screen.dart';
 
 class PlaygroundListScreen extends StatelessWidget {
   const PlaygroundListScreen({Key? key}) : super(key: key);
