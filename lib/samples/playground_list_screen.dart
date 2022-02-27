@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k_flutter_playground/samples/secure_storage/screen/secure_storage_screen.dart';
 
 import '../widget/playground_list.dart';
 import 'device_and_packge_info/device_and_package_info_screen.dart';
@@ -44,6 +45,10 @@ class PlaygroundListScreen extends StatelessWidget {
             PlaygroundListTile(
               title: '端末とアプリ情報',
               page: DeviceAndPackageInfoSampleScreen(),
+            ),
+            PlaygroundListTile(
+              title: 'Secure Storage',
+              page: SecureStorageScreen(),
             ),
           ],
         ),
