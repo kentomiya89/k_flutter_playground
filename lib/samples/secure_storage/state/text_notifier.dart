@@ -5,8 +5,8 @@ final textProvider = StateNotifierProvider.autoDispose<TextNotifier, String>(
   (ref) => TextNotifier(ref.read),
 );
 
-const _noData = 'No Data';
-const _testTextKey = 'testText';
+const noData = 'No Data';
+const testTextKey = 'testText';
 
 class TextNotifier extends StateNotifier<String> {
   TextNotifier(this._reader) : super('---') {
@@ -18,19 +18,19 @@ class TextNotifier extends StateNotifier<String> {
   Future<void> initState() async {
     final secureStorage = _reader(secureStorageProvider);
 
-    final data = await secureStorage.read(key: _testTextKey);
-    state = data ?? _noData;
+    final data = await secureStorage.read(key: testTextKey);
+    state = data ?? noData;
   }
 
   Future<void> save(String text) async {
     final secureStorage = _reader(secureStorageProvider);
-    await secureStorage.write(key: _testTextKey, value: text);
+    await secureStorage.write(key: testTextKey, value: text);
     state = text;
   }
 
   Future<void> delete() async {
     final secureStorage = _reader(secureStorageProvider);
-    await secureStorage.delete(key: _testTextKey);
-    state = _noData;
+    await secureStorage.delete(key: testTextKey);
+    state = noData;
   }
 }
